@@ -49,16 +49,20 @@ public class Hotel {
     void removeEmployee(int employeeID){
     }
     
-    ArrayList getEmployees(){
+    ArrayList<Employee> getEmployees(){
         return this.employees;
     }
     
-    ArrayList getRooms(){
+    ArrayList<Room> getRooms(){
         return this.rooms;
     }
     
-    ArrayList getCustomers(){
+    ArrayList<Customer> getCustomers(){
         return this.customers;
+    }
+    
+    ArrayList<Booking> getBookings(){
+        return this.bookings;
     }
     
     void setSalary(Employee employee, float newSalary){
@@ -68,33 +72,33 @@ public class Hotel {
     }
     
     public static void main(String args[]){
+        
         Hotel starHotel = new Hotel("Star Hotel", "1 Drive Way, Sheffield");
+        Employee tempEmployee = starHotel.createEmployee("Admin", 1, LocalDate.of(2017, Month.JANUARY, 1));
+        starHotel.getEmployees().add(tempEmployee);   
         
         System.out.println("Hotel name: " + starHotel.getName());
         System.out.println("Hotel address: " + starHotel.getStreetAddress() + "\n");
         
-        Employee tempEmployee = starHotel.createEmployee("Steve", 1, LocalDate.of(2017, Month.JANUARY, 1));
-        starHotel.employees.add(tempEmployee);
-        
-        for(Employee e : starHotel.employees){
+        for(Employee e : starHotel.getEmployees()){
             System.out.println("Employee name: " + e.getName());
             System.out.println("Employee id: " + e.getID());
             System.out.println("Is manager: " + e.getIsManager() + "\n");
         }
         
         Customer tempCustomer = new Customer("Annie", Gender.female, "10 Other Way, Cambridge");
-        starHotel.customers.add(tempCustomer);
+        starHotel.getCustomers().add(tempCustomer);
         
-        for(Customer c : starHotel.customers){
+        for(Customer c : starHotel.getCustomers()){
             System.out.println("Customer name: " + c.getName());
             System.out.println("Customer address: " + c.getAddress());
             System.out.println("Is defaulter: " + c.getIsDefaulter() + "\n");
         }
         
         Room tempRoom = new Room(RoomType.penthouse, 333, 3);
-        starHotel.rooms.add(tempRoom);
+        starHotel.getRooms().add(tempRoom);
         
-        for(Room r : starHotel.rooms){
+        for(Room r : starHotel.getRooms()){
             System.out.println("Room type: " + r.getRoomType());
             System.out.println("Room number: " + r.getRoomNumber());
             System.out.println("Room floor: " + r.getRoomFloor() + "\n");
@@ -102,15 +106,16 @@ public class Hotel {
         
         System.out.println("***attempt to book room***\n\n");
 
-        Booking booking = tempEmployee.createBooking(tempCustomer, tempRoom, LocalDate.now(), LocalDate.now(), starHotel.bookings);
+        Booking booking = tempEmployee.createBooking(tempCustomer, tempRoom, LocalDate.now(), LocalDate.now(), starHotel.getBookings());
         
         if(booking != null){
             System.out.println("Booking Success!");
-            starHotel.bookings.add(booking);
-            for(Booking b : starHotel.bookings){
+            starHotel.getBookings().add(booking);
+            for(Booking b : starHotel.getBookings()){
                 System.out.println("Booking ID: " + booking.getReservationID() + "\n");
             }
         }
+    
     
     }
 }

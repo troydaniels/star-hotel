@@ -2,6 +2,7 @@
  *
  * Shruti Rane 12760878, Anzhao Wang 12737678, Troy Daniels 12957130
 */
+
 package starhotel;
 
 import java.time.LocalDate;
@@ -16,40 +17,51 @@ public class Charge {
     private float price;
             
     public Charge(LocalDate date, LocalTime time, String chargeType, String name, float price){
+        this.setDate(date);
+        this.setTime(time);
+        this.setChargeType(chargeType);
+        this.setName(name);
+        this.setPrice(price);
     }
     
-    void setDate(LocalDate date){    
+    public void setDate(LocalDate date){
+        this.date = date;
     }
     
-    LocalDate getDate(){
+    public LocalDate getDate(){
         return this.date;
     }
     
-    void setTime(LocalTime time){
+    public void setTime(LocalTime time){
+        this.time = time;
     }
     
-    LocalTime getTime(){
+    public LocalTime getTime(){
         return this.time;
     }
     
-    void setChargeType(String chargeType){
+    public void setChargeType(String chargeType){
+        this.chargeType = chargeType;
     }
     
-    String getChargeType(){
+    public String getChargeType(){
         return this.chargeType;
     }
     
-    void setName(String name){
+    public void setName(String name){
+        this.name = name;
     }
     
-    String getName(){
+    public String getName(){
         return this.name;
     }
     
-    void setPrice(float price){
+    public void setPrice(float price){
+        this.price = price;
     }
     
-    float getPrice(){
+    public float getPrice(){
         return this.price;
     }
 }
+

@@ -56,15 +56,43 @@ public class Employee {
         return tempBooking;
     }
     
-    Booking extendBooking(Booking booking, LocalDate newEndDate){
-        return null;
+    // Extend booking if room is available for requested time
+    boolean extendBooking(ArrayList<Booking> bookings, Booking booking, LocalDate newEndDate){
+        boolean canExtend = true;
+        if(bookings.contains(booking)){
+            for(Booking b : bookings){
+                // Check it's the same room, and deny if a booking starts during
+                // extention period
+                if(b != booking && b.getRoom() == booking.getRoom()){
+                    if(b.getStartDate().isBefore(newEndDate)){
+                        canExtend = false;
+                        
+                    }
+                }
+            }
+            if(canExtend){
+                booking.setEndDate(newEndDate);
+            }
+        }
+        return canExtend;
     }
     
-    boolean checkInCustomer(int bookingID){
-        return false;
+    // Check customer in - set roomBooked to true if bookingID exists
+    boolean checkInCustomer(ArrayList<Room> rooms, ArrayList<Booking> bookings, String bookingID){
+        boolean roomBooked = false;
+        for(Booking b : bookings){
+            if(b.getReservationID() == bookingID){
+                for(Room r : rooms){
+                    r.setIsOccupied(true);
+                    roomBooked = true;
+                }
+            }
+        }
+        return roomBooked;
     }
     
     void setIsDefaulter(Customer customer, boolean isDefaulter){
+        customer.setIsDefaulter(isDefaulter);
     }
 
     boolean validateCredentials(Customer customer){
@@ -78,6 +106,9 @@ public class Employee {
         return false;
     }
     
-    void cancelBooking(Booking booking){
+    void cancelBooking(ArrayList bookings, Booking booking){
+        if(bookings.contains(booking)){
+            bookings.remove(booking);
+        }
     }
 }

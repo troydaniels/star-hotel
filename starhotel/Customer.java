@@ -44,4 +44,8 @@ class Customer {
     boolean getIsDefaulter(){
             return this.isDefaulter;
     }
+    
+    void setIsDefaulter(boolean isDefaulter){
+            this.isDefaulter = isDefaulter;
+    }
 }

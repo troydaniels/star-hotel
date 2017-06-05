@@ -2,6 +2,7 @@
  *
  * Shruti Rane 12760878, Anzhao Wang 12737678, Troy Daniels 12957130
 */
+
 package starhotel;
 
 import java.time.LocalDate;
@@ -51,6 +52,8 @@ class Booking {
     }
    
     void addAdditionalCharges(LocalDate date, LocalTime time, String chargeType, String name, float price){
+        Charge newCharge = new Charge(date, time, chargeType, name, price);
+        this.charges.add(newCharge);
     }
    
     void setCustomer(Customer customer){
