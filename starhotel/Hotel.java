@@ -75,7 +75,7 @@ public class Hotel {
         
         Hotel starHotel = new Hotel("Star Hotel", "1 Drive Way, Sheffield");
         Employee tempEmployee = starHotel.createEmployee("Admin", 1, LocalDate.of(2017, Month.JANUARY, 1));
-        starHotel.getEmployees().add(tempEmployee);   
+        starHotel.getEmployees().add(tempEmployee);
         
         System.out.println("Hotel name: " + starHotel.getName());
         System.out.println("Hotel address: " + starHotel.getStreetAddress() + "\n");
