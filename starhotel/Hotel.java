@@ -7,6 +7,7 @@ package starhotel;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Hotel {
     private String name;
@@ -73,13 +74,32 @@ public class Hotel {
     
     public static void main(String args[]){
         
-        Hotel starHotel = new Hotel("Star Hotel", "1 Drive Way, Sheffield");
-        Employee tempEmployee = starHotel.createEmployee("Admin", 1, LocalDate.of(2017, Month.JANUARY, 1));
+        // Create Hotel
+        System.out.print("Enter Hotel Name: ");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        System.out.print("Enter Hotel Address: ");
+        String address = scanner.nextLine();
+        Hotel starHotel = new Hotel(name, address);
+
+        System.out.println("\n*Creating Hotel*");
+        System.out.println("\nHotel name: " + starHotel.getName());
+        System.out.println("Hotel address: " + starHotel.getStreetAddress() + "\n\n");
+        
+        System.out.print("Enter Employee Name: ");
+        String employeeName = scanner.nextLine();
+        System.out.print("Enter Employee Id: ");
+        int employeeId = 0;
+        while(employeeId == 0){
+            employeeId = scanner.nextInt();
+        }
+        
+        Employee tempEmployee = starHotel.createEmployee(employeeName, employeeId, LocalDate.of(2017, Month.JANUARY, 1));
         starHotel.getEmployees().add(tempEmployee);
         
-        System.out.println("Hotel name: " + starHotel.getName());
-        System.out.println("Hotel address: " + starHotel.getStreetAddress() + "\n");
-        
+        System.out.println("\n*Creating Employee*\n");
+
+
         for(Employee e : starHotel.getEmployees()){
             System.out.println("Employee name: " + e.getName());
             System.out.println("Employee id: " + e.getID());
